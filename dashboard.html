@@ -42,10 +42,29 @@
         color: #000;
     }
 
-    .logout-btn {
-        display: block;
-        margin: 20px auto;
+    /* Buttons */
+    .btn {
         width: 90%;
+        margin: 12px auto;
+        padding: 14px;
+        background: #6A5ACD;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        text-align: center;
+        display: block;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #5948c4;
+    }
+
+    .logout-btn {
+        width: 90%;
+        margin: 20px auto;
         padding: 12px;
         background: #ff4444;
         color: white;
@@ -54,7 +73,6 @@
         font-size: 18px;
         cursor: pointer;
     }
-
     .logout-btn:hover {
         background: #dd2222;
     }
@@ -78,6 +96,19 @@
         localStorage.removeItem("userInfo");
         window.location.href = "index.html";
     }
+
+    // Button Click Functions
+    function goShopIn() {
+        alert("Shop-In page coming soon!");
+    }
+
+    function goDailySales() {
+        alert("Daily Sales page coming soon!");
+    }
+
+    function goShopOut() {
+        alert("Shop-Out page coming soon!");
+    }
 </script>
 </head>
 
@@ -100,6 +131,11 @@
     <div class="label">Area:</div>
     <div class="value" id="area"></div>
 </div>
+
+<!-- Three Buttons -->
+<button class="btn" onclick="goShopIn()">Shop-In</button>
+<button class="btn" onclick="goDailySales()">Daily Sales</button>
+<button class="btn" onclick="goShopOut()">Shop-Out</button>
 
 <button class="logout-btn" onclick="logout()">Logout</button>
 
