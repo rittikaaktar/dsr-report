@@ -7,7 +7,7 @@
       const bpId = document.getElementById("bpId").value;
       const password = document.getElementById("password").value;
 
-      const response = await fetch("YOUR_APPS_SCRIPT_WEB_APP_URL", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbz6dkesgYEPUK3plzPWyB-C-eUCc7tGEUbx7_CKFDhx2tKrJXcxo7NkzJHDD1MtQJpY/exec", {
         method: "POST",
         body: JSON.stringify({ bpId, password })
       });
@@ -31,3 +31,4 @@
   <p style="color:red" id="result"></p>
 </body>
 </html>
+
