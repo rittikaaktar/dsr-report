@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BP Login - DSR SHEET</title>
+
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>    
+</head>
+<body>
+    <section class="container">
+        <header>BP Registration</header>
+        <form id="regForm">
+            <div class="input-box">
+                <label for="bpname">BP NAME</label>
+                <input type="text" id="bpName" name="bpname" placeholder="Enter your BP NAME" required>
+            </div>
+
+            <div class="input-box">
+                <label for="outlatename">OUTLATE NAME</label>
+                <input type="text" id="outlateName" name="outlatename" placeholder="Enter your OUTLATE NAME" required>
+            </div>
+
+            <div class="input-box">
+                <label for="area">AREA</label>
+                <input type="text" id="area" name="area" placeholder="Enter your AREA" required>
+            </div>
+
+            <div class="input-box">
+                <label for="designation">DESIGNATION</label>
+                <input type="text" id="designation" name="designation" placeholder="Enter your DESIGNATION" required>
+            </div>
+
+            <div class="input-box">
+                <label for="bpid">BP ID</label>
+                <input type="text" id="bpId" name="bpid" placeholder="Enter your BP ID" required>
+            </div>
+
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit">Registration</button>
+        </form>
+
+        <p id="message"></p>
+
+    </section>
+
+    <script>
+    // 🔹 Firebase Config (নিজের project config বসাও)
+    const firebaseConfig = {
+    apiKey: "AIzaSyBka5dIXgkfpG8ntU7iww87gi2A7dG4hVs",
+    authDomain: "dsr-sheet-ea464.firebaseapp.com",
+    projectId: "dsr-sheet-ea464",
+    storageBucket: "dsr-sheet-ea464.firebasestorage.app",
+    messagingSenderId: "763164224776",
+    appId: "1:763164224776:web:7fe813fd74bcbcbeb790bd",
+    measurementId: "G-F4VSBR8XVX"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    const form = document.getElementById("regForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const bpName = document.getElementById("bpName").value;
+    const outlateName = document.getElementById("outlateName").value;
+    const area = document.getElementById("area").value;
+    const designation = document.getElementById("designation").value;
+    const bpId = document.getElementById("bpId").value;
+    const password = document.getElementById("password").value;
+
+    // Check if BP ID already exists
+    auth.fetchSignInMethodsForEmail(bpId + "@company.com")
+        .then(methods => {
+        if(methods.length > 0){
+            message.style.color="red";
+            message.innerText = "BP ID already registered!";
+        } else {
+            auth.createUserWithEmailAndPassword(bpId + "@company.com", password)
+            .then(()=>{
+            db.collection("users").doc(bpId).set({
+                bpName,
+                outlateName,
+                area,
+                designation,
+                bpId
+            }).then(()=>{
+                message.style.color="green";
+                message.innerText="Registration Successful!";
+                form.reset();
+                setTimeout(()=>{window.location.href="login.html";},1500);
+            }).catch((error)=>{
+                message.style.color="red";
+                message.innerText=error.message;
+            });
+            }).catch((error)=>{
+            message.style.color="red";
+            message.innerText=error.message;
+            });
+        }
+        });
+    });
+    </script>
+</body>
+</html>

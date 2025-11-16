@@ -1,0 +1,92 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(130, 106, 251);
+}
+
+.container {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.container header {
+    font-size: 1.5rem;
+    color: #333333;
+    font-weight: 500;
+    text-align: center;
+}
+
+.container form {
+    margin-top: 30px;
+}
+
+form .input-box {
+    width: 100%;
+    margin-top: 20px;
+}
+
+form .input-box label {
+    color: #333333;
+    font-size: 1rem;
+}
+
+form :where(.input-box input, .select-box, .input-box textarea) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+form .input-box input:focus, form .input-box textarea:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+form .input-box textarea {
+  min-height: 11rem;
+  max-width: 100%;
+  min-width: 100%;
+  field-sizing: content;
+  overflow:hidden;
+}
+
+form button {
+    height: 55px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgb(130, 106, 251);
+}
+
+form button:hover {
+    background: rgb(88, 56, 250);
+}
